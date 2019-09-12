@@ -1,10 +1,31 @@
-# Projeto 2 Grafos
+# NomedoProjeto (não definido)
 
+**Número da Lista**: X<br>
+**Conteúdo da Disciplina**: XXXXXXXXXX<br>
 
-Alunos:
-
-
-|Nome|Matrícula|
+## Alunos
+|Matrícula|Aluno|
 |--|--|
-|André Eduardo |16/0111978|
-|Arthur Rodrigues| 16/0112974|
+|16/0111978|André Eduardo |
+|16/0112974|Arthur Rodrigues
+
+## Sobre 
+Descreva os objetivos do seu projeto e como ele funciona. 
+
+## Screenshots
+Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+## Instalação 
+**Linguagem**: xxxxxx<br>
+**Framework**: (caso exista)<br>
+Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+
+## Uso 
+Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+
+## Outros 
+Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+
+
+
+
