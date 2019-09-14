@@ -12,10 +12,13 @@ import ipadIcon from "./icons/ipad.png";
 
 import "./styles.css";
 
+import Graph from "/home/arthurrodrigues/Documentos/Grafos2-Arthur_Andre/src/graph";
+var graph = new Graph;
 class App extends Component {
   graphData;
   constructor(props) {
     super(props);
+     
 
     this.state = {
       filterNeighbours: "",
@@ -131,8 +134,24 @@ class App extends Component {
       type: "dotted"
     });
   }
-
+  
   render() {
+    
+    var data = {
+      user: "arthurarp",
+      vizinhos: ['andre-eduardo', 'bruno']
+   };
+
+   var data1 = {
+      user: "andre-eduardo",
+      vizinhos: ['arthurarp']
+  };
+ 
+   graph.add_vertex(data);
+   graph.add_vertex(data1);
+
+   console.log(graph.get_vertex())
+
     return (
       <div className="App">
         <h1>Sigma Js</h1>
