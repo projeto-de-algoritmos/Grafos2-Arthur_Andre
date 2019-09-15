@@ -132,25 +132,66 @@ class App extends Component {
   //     nodesBy: "n" + ((Math.random() * 2) | 0),
   //     type: "dotted"
   //   });
+
+
   }
 
-  componentDidMount() {
-   
-    axios.get("https://api.github.com/users/arthurarp/followers").then(res => {
-      const persons = res.data;
+  async req(params) {
+    let name1 = "Andre-Eduardo"
+    let  name2 = "arthurarp"
+    let encontrado = false
+    let aux = 0
+    var res =[2,3]
+    var valor = {}
+     while(!encontrado && (aux <= 3)){
+
+  
+       axios.get(`https://api.github.com/users/${name1}/followers`).then(response => {
+      const persons = response.data;
+       
       this.setState({ persons });
-     
-     
-           
       
+   
+    
+    console.log(persons)
+    for (var x = 0; x<=3;x++){
+    persons.map((data)=>{
+      this.busca_user(data).then(person => console.log(person.name));
+      //console.log(person)
+      //console.log( valor)
     })
+  
+  }
+  })
+    console.log("ola")
+  aux+=1;
+  encontrado = true
+  }
+
+
+  
+  }
+
+  async busca_user(data){
+    var valor=[]
+   valor = await axios.get(`https://api.github.com/users/${data.login}/followers`)
+     console.log(valor)
+     return await valor.json()
+  }
+  componentDidMount() {
+  
+
+  this.req();
 
   }
-  
-  
+
+    
+ 
   render() {
+    
+
     this.state.persons.map((person, index) => {
-      console.log(person.login)
+      
       this.graphData.nodes.push({
         id: person.login,
         label: person.login,
