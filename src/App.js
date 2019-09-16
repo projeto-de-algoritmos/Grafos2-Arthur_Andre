@@ -136,7 +136,7 @@ class App extends Component {
 
   }
 
-  async req(params) {
+   req = async (params)=> {
     let name1 = "Andre-Eduardo"
     let  name2 = "arthurarp"
     let encontrado = false
@@ -147,23 +147,31 @@ class App extends Component {
 
   
        axios.get(`https://api.github.com/users/${name1}/followers`).then(response => {
-      const persons = response.data;
+      var persons = response.data;
        
       this.setState({ persons });
       
    
     
-    console.log(persons)
-    for (var x = 0; x<=3;x++){
+    //console.log(persons)
+    var a=[]
+    for (var x = 0; x<=0;x++){
     persons.map((data)=>{
-      this.busca_user(data).then(person => console.log(person.name));
-      //console.log(person)
-      //console.log( valor)
+      console.log( data)
+      this.busca_user(data).then(person =>console.log( ));
+    
+      
     })
+    console.log(a)
   
+   
+    
+    //persons = a
+    // console.log( a)
+    //console.log(persons)
   }
   })
-    console.log("ola")
+   
   aux+=1;
   encontrado = true
   }
@@ -172,11 +180,16 @@ class App extends Component {
   
   }
 
-  async busca_user(data){
+   busca_user  = async (data)=> {
     var valor=[]
-   valor = await axios.get(`https://api.github.com/users/${data.login}/followers`)
-     console.log(valor)
-     return await valor.json()
+    //console.log(data.login)
+    const res=await fetch(`https://api.github.com/users/${data.login}/followers`)
+      return await res.json()
+    
+     
+  }
+  imprimi(a){
+    console.log(a)
   }
   componentDidMount() {
   
