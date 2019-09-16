@@ -10,8 +10,8 @@ import NodeShapes from "./Sigma/NodeShapes";
 
 import axios from 'axios';
 
-//import Graph from "/home/arthurrodrigues/Documentos/Grafos2-Arthur_Andre/src/graph";
-//var graph = new Graph;
+import Graph from "./graph";
+var graph = new Graph;
 class App extends Component {
   graphData;
   constructor(props) {
@@ -136,6 +136,10 @@ class App extends Component {
 
   }
 
+
+
+
+
   async req(params) {
     let name1 = "Andre-Eduardo"
     let  name2 = "arthurarp"
@@ -143,6 +147,8 @@ class App extends Component {
     let aux = 0
     var res =[2,3]
     var valor = {}
+
+    
      while(!encontrado && (aux <= 3)){
 
   
@@ -151,17 +157,43 @@ class App extends Component {
        
       this.setState({ persons });
       
+      var data = {
+        user: name1,
+        avatar_url: 'www',
+        vizinhos: []
+      }
+
+      persons.map((vizinho)=>{
+        data['vizinhos'].push(vizinho.login)
+
+      })
+      
+      console.log(data);
+      graph.add_vertex(data);
    
+
     
     console.log(persons)
+    let index = 1
     for (var x = 0; x<=3;x++){
     persons.map((data)=>{
-      this.busca_user(data).then(person => console.log(person.name));
+      data = {
+        index: index,
+        user: data.login,
+        avatar_url: data.avatar_url,
+        vizinhos: []
+        
+      }
+      this.busca_user(data).then(person => console.log(person));
+      
+      graph.add_vertex(data);
       //console.log(person)
       //console.log( valor)
     })
   
   }
+
+  console.log(graph.get_vertex())
   })
     console.log("ola")
   aux+=1;
@@ -175,7 +207,7 @@ class App extends Component {
   async busca_user(data){
     var valor=[]
    valor = await axios.get(`https://api.github.com/users/${data.login}/followers`)
-     console.log(valor)
+     //console.log(valor)
      return await valor.json()
   }
   componentDidMount() {
