@@ -136,13 +136,9 @@ class App extends Component {
 
   }
 
-
-
-
-
-  async req(params) {
-    let name1 = "Andre-Eduardo"
-    let  name2 = "arthurarp"
+   req = async (params)=> {
+    let name1 = params
+    let  name2 = "Andre-Eduardo"
     let encontrado = false
     let aux = 0
     var res =[2,3]
@@ -150,10 +146,9 @@ class App extends Component {
 
     
      while(!encontrado && (aux <= 3)){
-
   
        axios.get(`https://api.github.com/users/${name1}/followers`).then(response => {
-      const persons = response.data;
+      var persons = response.data;
        
       this.setState({ persons });
       
@@ -168,34 +163,34 @@ class App extends Component {
 
       })
       
-      console.log(data);
       graph.add_vertex(data);
-   
-
-    
-    console.log(persons)
+       
     let index = 1
-    for (var x = 0; x<=3;x++){
-    persons.map((data)=>{
-      data = {
-        index: index,
+    for (var x = 0; x<=0;x++){
+      persons.map((data)=>{
+        var data1 = {}
+      data1 = {
         user: data.login,
         avatar_url: data.avatar_url,
         vizinhos: []
         
       }
-      this.busca_user(data).then(person => console.log(person));
+      this.busca_user(data).then(person => person.map((us)=> {
+       data1['vizinhos'].push(us.login)
+        
+      } ));
+
       
-      graph.add_vertex(data);
-      //console.log(person)
-      //console.log( valor)
+      graph.add_vertex(data1);
+
     })
   
+
   }
 
   console.log(graph.get_vertex())
   })
-    console.log("ola")
+   
   aux+=1;
   encontrado = true
   }
@@ -204,16 +199,21 @@ class App extends Component {
   
   }
 
-  async busca_user(data){
+   busca_user  = async (data)=> {
     var valor=[]
-   valor = await axios.get(`https://api.github.com/users/${data.login}/followers`)
-     //console.log(valor)
-     return await valor.json()
+    //console.log(data.login)
+    const res=await fetch(`https://api.github.com/users/${data.login}/followers`)
+      return await res.json()
+    
+     
+  }
+  imprimi(a){
+    console.log(a)
   }
   componentDidMount() {
   
 
-  this.req();
+  this.req("arthurarp");
 
   }
 

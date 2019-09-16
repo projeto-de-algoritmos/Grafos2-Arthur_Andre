@@ -10,7 +10,6 @@ class Graph
     add_vertex(data)
     {
         var vertex = {
-            index: 0,
             user: data['user'],
             avatar_url: data['avatar_url'],
             vizinhos: data['vizinhos']
@@ -18,7 +17,6 @@ class Graph
 
         this.vertexs.push(vertex);
 
-        console.log("deu certo")
 
     }
 
@@ -78,7 +76,7 @@ class Graph
 
     find_components()
     {
-        
+
     }
 
     get_vertex()
