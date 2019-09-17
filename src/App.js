@@ -11,7 +11,8 @@ import NodeShapes from "./Sigma/NodeShapes";
 import axios from 'axios';
 
 import Graph from "./graph";
-var graph = new Graph;
+var vertexs ={}
+var graph = new Graph(vertexs);
 class App extends Component {
   graphData;
   constructor(props) {
@@ -43,7 +44,7 @@ class App extends Component {
       },
       style: {
         maxWidth: "1200px",
-        height: "600px"
+        height: "800px"
       }
     };
 
@@ -182,13 +183,14 @@ class App extends Component {
 
       
       graph.add_vertex(data1);
-
+      
+      
     })
   
 
   }
 
-  console.log(graph.get_vertex())
+ 
   })
    
   aux+=1;
@@ -220,15 +222,20 @@ class App extends Component {
     
  
   render() {
-    
-
+    var grafo =  graph.get_vertex()
+    console.log( graph.get_vertex())
+   grafo.map((x)=>{
+     
+    })
+    console.log(Array.from(grafo))
+   
     this.state.persons.map((person, index) => {
       
       this.graphData.nodes.push({
         id: person.login,
         label: person.login,
-        x: index*10,
-        y: index*50,
+        x: index+Math.random()*50,
+        y: index+Math.random()*100,
         size: 1,
         color: "#000000",
         borderColor: "#FF3333",
@@ -236,29 +243,26 @@ class App extends Component {
         image: {
           url: person.avatar_url,
           // scale/clip are ratio values applied on top of 'size'
-          scale: 5,
+          scale: 8,
           clip: 5,
           w: 15,
           h: 15
         }
       });
+      // this.graphData.edges.push({
+      //       id: "userEdge2",
+      //       source: "device1",
+      //       target: "user",
+      //       size: 3,
+      //       color: "#ff0000",
+      //       neighborsOf: "n" + ((Math.random() * 2) | 0),
+      //       nodesBy: "n" + ((Math.random() * 2) | 0),
+      //       type: "dotted"
+      //     });
 
     }) 
     
-  //   var data = {
-  //     user: "arthurarp",
-  //     vizinhos: ['andre-eduardo', 'bruno']
-  //  };
 
-  //  var data1 = {
-  //     user: "andre-eduardo",
-  //     vizinhos: ['arthurarp']
-  // };
- 
-  //  graph.add_vertex(data);
-  //  graph.add_vertex(data1);
-
-   //console.log(graph.get_vertex())
 
     return (
       <div className="App">

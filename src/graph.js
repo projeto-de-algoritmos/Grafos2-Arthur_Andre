@@ -1,11 +1,12 @@
 class Graph
 {
-    vertexs = []
-    constructor()
+     
+    constructor(vertex)
     {
-       console.log("grafo criado")
+       console.log("grafo criado");
+       this.vertexs = vertex
     }
-
+   
 
     add_vertex(data)
     {
